@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Radhika Tower</title>
+
+  <!-- Link to manifest -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Theme color for PWA -->
+  <meta name="theme-color" content="#2196f3">
+
+  <!-- Register service worker -->
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("service-worker.js")
+        .then(() => console.log("Service Worker registered"))
+        .catch(err => console.error("Service Worker failed:", err));
+    }
+  </script>
+</head>
+<body>
+  <h1>Welcome to Radhika Tower</h1>
+  <p>This is the PWA entry page hosted on GitHub Pages.</p>
+</body>
+</html>
