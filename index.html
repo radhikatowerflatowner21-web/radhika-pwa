@@ -23,5 +23,43 @@
 <body>
   <h1>Welcome to Radhika Tower</h1>
   <p>This is the PWA entry page hosted on GitHub Pages.</p>
+
+  <!-- Buttons to test backend -->
+  <button onclick="getData()">Fetch Data</button>
+  <button onclick="sendData()">Send Data</button>
+
+  <pre id="output"></pre>
+
+  <script>
+    const backendUrl = "https://script.google.com/macros/s/AKfycbxxiDtFfszBTyKzz5UTd5OhS-iUqTsibDSu2p8nrLgvGwhub80t5BlKYqnzMWgm5rLf/exec"; 
+    // Replace with your actual Apps Script deployment URL
+
+    async function getData() {
+      try {
+        const response = await fetch(backendUrl + "?action=getData");
+        const data = await response.json();
+        document.getElementById("output").textContent = 
+          "Fetched data:\n" + JSON.stringify(data, null, 2);
+      } catch (err) {
+        console.error("Error fetching data:", err);
+      }
+    }
+
+    async function sendData() {
+      const payload = { name: "Test User", value: 123 };
+      try {
+        const response = await fetch(backendUrl, {
+          method: "POST",
+          body: JSON.stringify(payload),
+          headers: { "Content-Type": "application/json" }
+        });
+        const result = await response.json();
+        document.getElementById("output").textContent = 
+          "Send result:\n" + JSON.stringify(result, null, 2);
+      } catch (err) {
+        console.error("Error sending data:", err);
+      }
+    }
+  </script>
 </body>
 </html>
